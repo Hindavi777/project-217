@@ -15,19 +15,9 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-    socket.on("message", (message) => {
-        io.emit("createMessage", message);
+    socket.on("message", (message, user) => {
+        io.emit("createMessage", message, user);
     });
 });
-
-socket.on("createMessage", (message) => {
-    $(".message").append(
-        <div class="message">
-            <span>${message}</span>
-        </div>
-    );
-});
-
-
 
 server.listen(3030);
